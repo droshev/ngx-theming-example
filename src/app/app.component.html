@@ -5,3 +5,6 @@
     <fd-checkbox [(ngModel)]="markWeekends">Mark Weekends</fd-checkbox>
 </div>
 <fd-calendar [showWeekNumbers]="showWeekCount" [compact]="compact" [markWeekends]="markWeekends"></fd-calendar>
+
+<link rel="stylesheet" *ngIf="cssUrl" [href]="cssUrl"/>
+<link rel="stylesheet" *ngIf="cssCustomUrl" [href]="cssCustomUrl"/>

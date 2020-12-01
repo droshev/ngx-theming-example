@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { ThemesService } from '@fundamental-ngx/core';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +11,16 @@ export class AppComponent {
   showWeekCount = false;
   compact = false;
   markWeekends = false;
+
+  cssUrl: SafeResourceUrl | undefined;
+  cssCustomUrl: SafeResourceUrl | undefined;
+
+  constructor(private _themesService: ThemesService) {
+    _themesService.setThemeByRoute();
+
+    _themesService.onThemeQueryParamChange.pipe().subscribe(theme => {
+        this.cssCustomUrl = theme.customThemeUrl;
+        this.cssUrl = theme.themeUrl;
+    });
+  }
 }
